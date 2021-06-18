@@ -34,6 +34,10 @@
 #                         Strip more terminal control codes.
 #    V0.26, 16 Nov 2019
 #      http://github.com/pixelb/scripts/commits/master/scripts/ansi2html.sh
+#    V0.27, 18 Jun 2021, ozawa@iwatafont.co.jp
+#                         Add macOS Terminal.app color for use with
+#                         fontbakery check-opentype
+
 
 gawk --version >/dev/null || exit 1
 
@@ -86,6 +90,12 @@ processArg()
        P4=0000EE;  P5=CD00CD;  P6=00CDCD;  P7=E5E5E5;
        P8=7F7F7F;  P9=FF0000; P10=00FF00; P11=FFFF00;
       P12=5C5CFF; P13=FF00FF; P14=00FFFF; P15=FFFFFF;
+      return;
+    elif [ "$1" = "--palette=terminalapp" ]; then
+       P0=000000;  P1=FC2A1C;  P2=00AA00;  P3=E5E431;
+       P4=0000AA;  P5=AA00AA;  P6=00AAAA;  P7=E6E5E6;
+       P8=555555;  P9=FC2A1C; P10=17A41A; P11=FFFF55;
+      P12=0516AF; P13=B119B0; P14=1AA6B1; P15=FFFFFF;
       return;
     else # linux console
        P0=000000;  P1=AA0000;  P2=00AA00;  P3=AA5500;
